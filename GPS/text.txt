@@ -1,0 +1,2 @@
+superuser = Taslima
+password = taslima1234

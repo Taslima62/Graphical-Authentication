@@ -1,0 +1,107 @@
+{% extends 'authentication/basic.html' %}
+{% block head %}
+    <title>Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="../../static/authentication/css/style.css">
+
+    <style>
+        img {
+            height: 80px;
+            width: 80px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    {% load static %}
+    
+    <h1 style="text-align: center;">Login:</h1>
+        <!-- One "tab" for each step in the form: -->
+        
+    <form style="text-align: center;" id="regForm" action="" method="post">
+        {% csrf_token %}
+        <div class="tab"> Select 1st image
+            <!-- <p><input type="hidden" id='1' name='1'></p> -->
+            <p>
+                {% for i in r %}
+                {% for j in r %}
+                <button type="button"><img id='0{{i}}{{j}}' src=""
+                        alt="W3Schools.com" onclick="displayme('{{i}}{{j}}', '1')"></button>
+                {% endfor %}
+                <br>
+                {% endfor %}
+
+            </p>
+        </div>
+        <div class="tab"> Select 2nd image
+            <!-- <p><input type="hidden" id='2' name='2'></p> -->
+            <p>
+                {% for i in r %}
+                {% for j in r %}
+                <button type="button"><img id='1{{i}}{{j}}' src="" alt="W3Schools.com"
+                        onclick="displayme('{{i}}{{j}}', '2')"></button>
+                {% endfor %}
+                <br>
+                {% endfor %}
+
+            </p>
+        </div>
+        <div class="tab"> Select 3rd image
+            <!-- <p><input type="hidden" id='3' name='3'></p> -->
+            <p>
+                {% for i in r %}
+                {% for j in r %}
+                <button type="button"><img id='2{{i}}{{j}}' src="" alt="W3Schools.com"
+                        onclick="displayme('{{i}}{{j}}', '3')"></button>
+                {% endfor %}
+                <br>
+                {% endfor %}
+
+            </p>
+        </div>
+        <div class="tab"> Select 4th image
+             
+             <p><input type="hidden" id='validity' name='validity'></p> 
+             <p><input type="hidden" id='username' name='username' value="{{username}}"></p> 
+            <p>
+                {% for i in r %}
+                {% for j in r %}
+                <button type="button"><img id='3{{i}}{{j}}' src="" alt="W3Schools.com"
+                        onclick="displayme('{{i}}{{j}}', '4')"></button>
+                {% endfor %}
+                <br>
+                {% endfor %}
+
+            </p>
+        </div>
+        <div style="overflow:auto;">
+            <div>
+                <!-- <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button> -->
+                <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+            </div>
+        </div>
+        
+
+        <!-- Circles which indicates the steps of the form: -->
+        <div style="text-align:center;margin-top:20px;">
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+           
+            
+            
+        </div>
+
+    </form>
+    {{ user_id|json_script:"user_id" }}
+    {{ password|json_script:"password" }}
+    {{ images1|json_script:"images1" }}
+    {{ images2|json_script:"images2" }}
+    {{ images3|json_script:"images3" }}
+    {{ images4|json_script:"images4" }}
+    {{ d_image|json_script:"d_image" }}
+    <script src="../../static/authentication/js/test.js"></script>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'authentication/basic.html' %}
+{% block head %}
+    <title>login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="../../static/authentication/css/style.css">
+
+    <style>
+        img {
+            height: 80px;
+            width: 80px;
+        }
+         
+    </style>
+{% endblock %}
+
+{% block body %}
+    {% load static %}
+     
+    <h1 style="text-align: center;">Login:</h1>
+
+    <form id="regForm" action="" method="post">
+        {% csrf_token %}
+        <div >
+            
+            {% if msg %}
+            <a style="text-align: center; padding-left: 40%;" class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}"><h3><b>{{ msg }}</b></h3></a>
+            {%else%}
+            {% if temp %}
+            <a  id= "countdown" style="text-align: center; padding-left: 40%;" class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">Please try again after {{ temp}} seconds.</a>
+            
+            {%else%}
+           
+            Username:
+            {% endif %}
+            {% endif %}
+            <p><input id="username" name="username" placeholder="Username..." oninput="this.className = ''"></p>
+            <!-- <p><input placeholder="E-mail..." oninput="this.className = ''"></p> -->
+        </div>
+        <div style="overflow:auto;">
+            <div>
+               <button type="submit" id="submitBtn" name="submitBtn">Next</button>
+            </div>
+        </div>
+        
+    </form>
+ 
+    <!-- {{ temp|json_script:"temp" }}
+    <script type="text/javascript">
+        // Set the date we're counting down to
+        var now = JSON.parse(document.getElementById('temp').textContent);
+        // now = int(now);
+        // Update the count down every 1 second
+        if(now){
+        var x = setInterval(function() {
+        
+          // Get today's date and time
+        //   var now = new Date().getTime();
+         now = now+1;
+          // Find the distance between now and the count down date
+          var distance = 60-now;
+        
+          // Time calculations for days, hours, minutes and seconds
+         
+          document.getElementById("countdown").innerHTML = "Please try again after" + distance +"seconds.";
+        
+          // If the count down is finished, write some text
+          if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "";
+          }
+        }, 1000);
+    }
+        </script>
+         -->
+{% endblock %}
